@@ -11,7 +11,7 @@
 # hlsearch on (H) or off (h):
 ~h
 # Last Search Pattern:
-~MSle0~/alias
+~MSle0~/0.18
 
 # Last Substitute Search Pattern:
 ~MSle0&name
@@ -20,12 +20,16 @@
 $out_name
 
 # Command Line History (newest to oldest):
+:w
+|2,0,1589897713,,"w"
+:26
+|2,0,1589879117,,"26"
+:52
+|2,0,1589879113,,"52"
 :wq
-|2,0,1589566675,,"wq"
+|2,0,1589820345,,"wq"
 :q
 |2,0,1589183908,,"q"
-:w
-|2,0,1588705078,,"w"
 :'<,'>s/name/out_name/
 |2,0,1588173310,,"'<,'>s/name/out_name/"
 :'<,'>s/name/namename/
@@ -82,6 +86,12 @@ $out_name
 |2,0,1582206501,,"i"
 
 # Search String History (newest to oldest):
+?/0.18
+|2,1,1589973550,47,"0.18"
+?/err
+|2,1,1589973532,47,"err"
+?/reduced
+|2,1,1589537254,47,"reduced"
 ?/alias
 |2,1,1589183661,47,"alias"
 ? \<df_final\>
@@ -140,348 +150,274 @@ $out_name
 # Debug Line History (newest to oldest):
 
 # Registers:
-"0	CHAR	0
-	~/.ssh/scs-cluster-krl
-	
-|3,0,0,0,2,0,1589566655,"~/.ssh/scs-cluster-krl",""
-"1	LINE	0
-	alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles.git/ --work-tree=$HOME"
-|3,0,1,1,1,0,1589564231,"alias dotfiles=\"/usr/bin/git --git-dir=$HOME/.dotfiles.git/ --work-tree=$HOME\""
+"0	LINE	0
+	            print(train_temp)
+	            print(test_temp)
+|3,0,0,1,2,0,1589897528,"            print(train_temp)","            print(test_temp)"
+""1	LINE	0
+	        print(test_temp.dtypes)
+|3,1,1,1,1,0,1589884431,"        print(test_temp.dtypes)"
 "2	LINE	0
-	
-|3,0,2,1,1,0,1589183599,""
+	        print(train_temp.dtypes)
+|3,0,2,1,1,0,1589884431,"        print(train_temp.dtypes)"
 "3	LINE	0
-	    # placeholder - enumerate not working as expected
-	    i = 0
-	    os.mkdir(out_name)
-	    kf = StratifiedKFold(n_splits=10, shuffle=True, random_state=42)
-	
-	    for train_index, test_index in kf.split(df.drop(['Q'], axis=1), df['Q']):
-	        train_temp = df.loc[train_index]
-	        train_temp.reset_index(drop=True, inplace=True)
-	        test_temp = df.loc[test_index]
-	        test_temp.reset_index(drop=True, inplace=True)
-	        # arff.dump('.arff', df.values, relation='relation out_name', names=df.columns)` 
-	        train_temp.to_csv(out_name+"/"+out_name+'_train_'+str(i)+'.csv', index=False)
-	        test_temp.to_csv(out_name+"/"+out_name+'_test_'+str(i)+'.csv', index=False)
-|3,0,3,1,13,0,1588341760,"    # placeholder - enumerate not working as expected","    i = 0","    os.mkdir(out_name)","    kf = StratifiedKFold(n_splits=10, shuffle=True, random_state=42)","","    for train_index, test_index in kf.split(df.drop(['Q'], axis=1), df['Q']):","        train_temp = df.loc[train_index]","        train_temp.reset_index(drop=True, inplace=True)","        test_temp = df.loc[test_index]",>56
-|<"        test_temp.reset_index(drop=True, inplace=True)","        # arff.dump('.arff', df.values, relation='relation out_name', names=df.columns)` ","        train_temp.to_csv(out_name+\"/\"+out_name+'_train_'+str(i)+'.csv', index=False)","        test_temp.to_csv(out_name+\"/\"+out_name+'_test_'+str(i)+'.csv', index=False)"
+	        df.drop(['pad_id', 'DateTime'], axis=1, inplace=True)
+|3,0,3,1,1,0,1589879552,"        df.drop(['pad_id', 'DateTime'], axis=1, inplace=True)"
 "4	LINE	0
-	    # placeholder - enumerate not working as expected
-	    i = 0
-	    os.mkdir(out_name)
-	    kf = StratifiedKFold(n_splits=1, shuffle=True, random_state=42)
-	
-	    for train_index, test_index in kf.split(df.drop(['Q'], axis=1), df['Q']):
-	        train_temp = df.loc[train_index]
-	        train_temp.reset_index(drop=True, inplace=True)
-	        test_temp = df.loc[test_index]
-	        test_temp.reset_index(drop=True, inplace=True)
-	        # arff.dump('.arff', df.values, relation='relation out_name', names=df.columns)` 
-	        train_temp.to_csv(out_name+"/"+out_name+'_train_'+str(i)+'.csv', index=False)
-	        test_temp.to_csv(out_name+"/"+out_name+'_test_'+str(i)+'.csv', index=False)
-|3,0,4,1,13,0,1588341698,"    # placeholder - enumerate not working as expected","    i = 0","    os.mkdir(out_name)","    kf = StratifiedKFold(n_splits=1, shuffle=True, random_state=42)","","    for train_index, test_index in kf.split(df.drop(['Q'], axis=1), df['Q']):","        train_temp = df.loc[train_index]","        train_temp.reset_index(drop=True, inplace=True)","        test_temp = df.loc[test_index]",>56
-|<"        test_temp.reset_index(drop=True, inplace=True)","        # arff.dump('.arff', df.values, relation='relation out_name', names=df.columns)` ","        train_temp.to_csv(out_name+\"/\"+out_name+'_train_'+str(i)+'.csv', index=False)","        test_temp.to_csv(out_name+\"/\"+out_name+'_test_'+str(i)+'.csv', index=False)"
+	                df[col] = df[col].astype(object)
+|3,0,4,1,1,0,1589879543,"                df[col] = df[col].astype(object)"
 "5	LINE	0
-	    # placeholder - enumerate not working as expected
-|3,0,5,1,1,0,1588338758,"    # placeholder - enumerate not working as expected"
+	            for col in cat_vars:
+|3,0,5,1,1,0,1589879543,"            for col in cat_vars:"
 "6	LINE	0
-	        # arff.dump('.arff', df.values, relation='relation out_name', names=df.columns)` 
-|3,0,6,1,1,0,1588338753,"        # arff.dump('.arff', df.values, relation='relation out_name', names=df.columns)` "
+	            cat_vars = ['BOARD_NR', 'PINNR', 'Q']
+|3,0,6,1,1,0,1589879543,"            cat_vars = ['BOARD_NR', 'PINNR', 'Q']"
 "7	LINE	0
-	    i = 0
-|3,0,7,1,1,0,1588338751,"    i = 0"
+	        if clean_up:
+|3,0,7,1,1,0,1589879542,"        if clean_up:"
 "8	LINE	0
-	    os.mkdir(out_name)
-	    kf = StratifiedKFold(n_splits=10, shuffle=True, random_state=42)
-	
-	    for train_index, test_index in kf.split(df.drop(['Q'], axis=1), df['Q']):
-	        train_temp = df.loc[train_index]
-	        train_temp.reset_index(drop=True, inplace=True)
-	        test_temp = df.loc[test_index]
-	        test_temp.reset_index(drop=True, inplace=True)
-|3,0,8,1,8,0,1588338746,"    os.mkdir(out_name)","    kf = StratifiedKFold(n_splits=10, shuffle=True, random_state=42)","","    for train_index, test_index in kf.split(df.drop(['Q'], axis=1), df['Q']):","        train_temp = df.loc[train_index]","        train_temp.reset_index(drop=True, inplace=True)","        test_temp = df.loc[test_index]","        test_temp.reset_index(drop=True, inplace=True)"
+	        # clean-up for automl benchmark
+|3,0,8,1,1,0,1589879542,"        # clean-up for automl benchmark"
 "9	LINE	0
-	        i+=1
-|3,0,9,1,1,0,1588338723,"        i+=1"
+	        
+|3,0,9,1,1,0,1589879237,"        "
 "q	CHAR	0
 	
 |3,0,26,0,1,0,1579787243,""
-""-	CHAR	0
-	scs-cluster-krl
-|3,1,36,0,1,0,1589566667,"scs-cluster-krl"
+"-	CHAR	0
+	f
+|3,0,36,0,1,0,1589897642,"f"
 
 # File marks:
-'0  15  29  ~/.ssh/config
-|4,48,15,29,1589566675,"~/.ssh/config"
-'1  1  0  ~/.ssh/known_hosts
-|4,49,1,0,1589566117,"~/.ssh/known_hosts"
-'2  1  0  ~/.ssh/config
-|4,50,1,0,1589566005,"~/.ssh/config"
-'3  1  0  ~/.ssh/config
-|4,51,1,0,1589566005,"~/.ssh/config"
-'4  105  0  ~/.zshrc
-|4,52,105,0,1589564242,"~/.zshrc"
-'5  10  38  ~/.ssh/config
-|4,53,10,38,1589186426,"~/.ssh/config"
-'6  10  38  ~/.ssh/config
-|4,54,10,38,1589186426,"~/.ssh/config"
-'7  10  38  ~/.ssh/config
-|4,55,10,38,1589186426,"~/.ssh/config"
-'8  10  38  ~/.ssh/config
-|4,56,10,38,1589186426,"~/.ssh/config"
-'9  1  0  ~/.ssh/config
-|4,57,1,0,1589186377,"~/.ssh/config"
+'0  159  53  ~/projects/siemens_automl_project/data_processing.py
+|4,48,159,53,1589983175,"~/projects/siemens_automl_project/data_processing.py"
+'1  38  37  ~/projects/siemens_automl_project/feather_to_stratified_csv.py
+|4,49,38,37,1589983172,"~/projects/siemens_automl_project/feather_to_stratified_csv.py"
+'2  1  0  ~/projects/siemens_automl_project/feather_to_stratified_csv.py
+|4,50,1,0,1589882570,"~/projects/siemens_automl_project/feather_to_stratified_csv.py"
+'3  1  0  ~/projects/siemens_automl_project/feather_to_stratified_csv.py
+|4,51,1,0,1589832515,"~/projects/siemens_automl_project/feather_to_stratified_csv.py"
+'4  1  0  ~/projects/siemens_automl_project/feather_to_stratified_csv.py
+|4,52,1,0,1589832515,"~/projects/siemens_automl_project/feather_to_stratified_csv.py"
+'5  51  29  ~/projects/siemens_automl_project/feather_to_stratified_csv.py
+|4,53,51,29,1589820345,"~/projects/siemens_automl_project/feather_to_stratified_csv.py"
+'6  51  29  ~/projects/siemens_automl_project/feather_to_stratified_csv.py
+|4,54,51,29,1589820345,"~/projects/siemens_automl_project/feather_to_stratified_csv.py"
+'7  51  29  ~/projects/siemens_automl_project/feather_to_stratified_csv.py
+|4,55,51,29,1589820345,"~/projects/siemens_automl_project/feather_to_stratified_csv.py"
+'8  51  29  ~/projects/siemens_automl_project/feather_to_stratified_csv.py
+|4,56,51,29,1589820345,"~/projects/siemens_automl_project/feather_to_stratified_csv.py"
+'9  60  29  ~/projects/siemens_automl_project/feather_to_stratified_csv.py
+|4,57,60,29,1589820345,"~/projects/siemens_automl_project/feather_to_stratified_csv.py"
 
 # Jumplist (newest first):
--'  15  29  ~/.ssh/config
-|4,39,15,29,1589566675,"~/.ssh/config"
--'  1  0  ~/.ssh/config
-|4,39,1,0,1589566571,"~/.ssh/config"
--'  1  0  ~/.ssh/known_hosts
-|4,39,1,0,1589566117,"~/.ssh/known_hosts"
--'  1  0  ~/.ssh/known_hosts
-|4,39,1,0,1589566117,"~/.ssh/known_hosts"
--'  1  0  ~/.ssh/config
-|4,39,1,0,1589566005,"~/.ssh/config"
--'  1  0  ~/.ssh/config
-|4,39,1,0,1589566005,"~/.ssh/config"
--'  105  0  ~/.zshrc
-|4,39,105,0,1589564242,"~/.zshrc"
--'  105  0  ~/.zshrc
-|4,39,105,0,1589564242,"~/.zshrc"
--'  105  0  ~/.zshrc
-|4,39,105,0,1589564242,"~/.zshrc"
--'  105  0  ~/.zshrc
-|4,39,105,0,1589564242,"~/.zshrc"
--'  105  0  ~/.zshrc
-|4,39,105,0,1589564242,"~/.zshrc"
--'  105  0  ~/.zshrc
-|4,39,105,0,1589564242,"~/.zshrc"
--'  105  0  ~/.zshrc
-|4,39,105,0,1589564242,"~/.zshrc"
--'  105  0  ~/.zshrc
-|4,39,105,0,1589564242,"~/.zshrc"
--'  1  0  ~/.zshrc
-|4,39,1,0,1589564207,"~/.zshrc"
--'  1  0  ~/.zshrc
-|4,39,1,0,1589564207,"~/.zshrc"
--'  1  0  ~/.zshrc
-|4,39,1,0,1589564207,"~/.zshrc"
--'  1  0  ~/.zshrc
-|4,39,1,0,1589564207,"~/.zshrc"
--'  1  0  ~/.zshrc
-|4,39,1,0,1589564207,"~/.zshrc"
--'  1  0  ~/.zshrc
-|4,39,1,0,1589564207,"~/.zshrc"
--'  1  0  ~/.zshrc
-|4,39,1,0,1589564207,"~/.zshrc"
--'  1  0  ~/.zshrc
-|4,39,1,0,1589564207,"~/.zshrc"
--'  10  38  ~/.ssh/config
-|4,39,10,38,1589186426,"~/.ssh/config"
--'  10  38  ~/.ssh/config
-|4,39,10,38,1589186426,"~/.ssh/config"
--'  10  38  ~/.ssh/config
-|4,39,10,38,1589186426,"~/.ssh/config"
--'  10  38  ~/.ssh/config
-|4,39,10,38,1589186426,"~/.ssh/config"
--'  10  38  ~/.ssh/config
-|4,39,10,38,1589186426,"~/.ssh/config"
--'  10  38  ~/.ssh/config
-|4,39,10,38,1589186426,"~/.ssh/config"
--'  10  38  ~/.ssh/config
-|4,39,10,38,1589186426,"~/.ssh/config"
--'  5  2  ~/.ssh/config
-|4,39,5,2,1589186394,"~/.ssh/config"
--'  5  2  ~/.ssh/config
-|4,39,5,2,1589186394,"~/.ssh/config"
--'  5  2  ~/.ssh/config
-|4,39,5,2,1589186394,"~/.ssh/config"
--'  5  2  ~/.ssh/config
-|4,39,5,2,1589186394,"~/.ssh/config"
--'  5  2  ~/.ssh/config
-|4,39,5,2,1589186394,"~/.ssh/config"
--'  5  2  ~/.ssh/config
-|4,39,5,2,1589186394,"~/.ssh/config"
--'  5  2  ~/.ssh/config
-|4,39,5,2,1589186394,"~/.ssh/config"
--'  1  0  ~/.ssh/config
-|4,39,1,0,1589186377,"~/.ssh/config"
--'  1  0  ~/.ssh/config
-|4,39,1,0,1589186377,"~/.ssh/config"
--'  1  0  ~/.ssh/config
-|4,39,1,0,1589186377,"~/.ssh/config"
--'  1  0  ~/.ssh/config
-|4,39,1,0,1589186377,"~/.ssh/config"
--'  1  0  ~/.ssh/config
-|4,39,1,0,1589184765,"~/.ssh/config"
--'  1  0  ~/.ssh/config
-|4,39,1,0,1589184765,"~/.ssh/config"
--'  1  0  ~/.ssh/config
-|4,39,1,0,1589184765,"~/.ssh/config"
--'  1  0  ~/.ssh/config
-|4,39,1,0,1589184765,"~/.ssh/config"
--'  99  32  ~/.zshrc
-|4,39,99,32,1589183912,"~/.zshrc"
--'  99  32  ~/.zshrc
-|4,39,99,32,1589183912,"~/.zshrc"
--'  99  32  ~/.zshrc
-|4,39,99,32,1589183912,"~/.zshrc"
--'  99  32  ~/.zshrc
-|4,39,99,32,1589183912,"~/.zshrc"
--'  99  32  ~/.zshrc
-|4,39,99,32,1589183912,"~/.zshrc"
--'  99  32  ~/.zshrc
-|4,39,99,32,1589183912,"~/.zshrc"
--'  99  32  ~/.zshrc
-|4,39,99,32,1589183912,"~/.zshrc"
--'  99  32  ~/.zshrc
-|4,39,99,32,1589183912,"~/.zshrc"
--'  99  32  ~/.zshrc
-|4,39,99,32,1589183912,"~/.zshrc"
--'  99  32  ~/.zshrc
-|4,39,99,32,1589183912,"~/.zshrc"
--'  99  32  ~/.zshrc
-|4,39,99,32,1589183912,"~/.zshrc"
--'  99  32  ~/.zshrc
-|4,39,99,32,1589183912,"~/.zshrc"
--'  99  32  ~/.zshrc
-|4,39,99,32,1589183912,"~/.zshrc"
--'  99  32  ~/.zshrc
-|4,39,99,32,1589183912,"~/.zshrc"
--'  99  32  ~/.zshrc
-|4,39,99,32,1589183912,"~/.zshrc"
--'  99  32  ~/.zshrc
-|4,39,99,32,1589183912,"~/.zshrc"
--'  99  32  ~/.zshrc
-|4,39,99,32,1589183912,"~/.zshrc"
--'  99  32  ~/.zshrc
-|4,39,99,32,1589183912,"~/.zshrc"
--'  99  32  ~/.zshrc
-|4,39,99,32,1589183912,"~/.zshrc"
--'  99  32  ~/.zshrc
-|4,39,99,32,1589183912,"~/.zshrc"
--'  99  32  ~/.zshrc
-|4,39,99,32,1589183912,"~/.zshrc"
--'  99  32  ~/.zshrc
-|4,39,99,32,1589183912,"~/.zshrc"
--'  99  32  ~/.zshrc
-|4,39,99,32,1589183912,"~/.zshrc"
--'  99  32  ~/.zshrc
-|4,39,99,32,1589183912,"~/.zshrc"
--'  99  32  ~/.zshrc
-|4,39,99,32,1589183912,"~/.zshrc"
--'  99  32  ~/.zshrc
-|4,39,99,32,1589183912,"~/.zshrc"
--'  99  32  ~/.zshrc
-|4,39,99,32,1589183912,"~/.zshrc"
--'  99  32  ~/.zshrc
-|4,39,99,32,1589183912,"~/.zshrc"
--'  99  32  ~/.zshrc
-|4,39,99,32,1589183912,"~/.zshrc"
--'  99  32  ~/.zshrc
-|4,39,99,32,1589183912,"~/.zshrc"
--'  99  32  ~/.zshrc
-|4,39,99,32,1589183912,"~/.zshrc"
--'  99  32  ~/.zshrc
-|4,39,99,32,1589183912,"~/.zshrc"
--'  5  34  ~/.ssh/config
-|4,39,5,34,1589183902,"~/.ssh/config"
--'  5  34  ~/.ssh/config
-|4,39,5,34,1589183902,"~/.ssh/config"
--'  5  34  ~/.ssh/config
-|4,39,5,34,1589183902,"~/.ssh/config"
--'  5  34  ~/.ssh/config
-|4,39,5,34,1589183902,"~/.ssh/config"
--'  5  34  ~/.ssh/config
-|4,39,5,34,1589183902,"~/.ssh/config"
--'  5  34  ~/.ssh/config
-|4,39,5,34,1589183902,"~/.ssh/config"
--'  5  34  ~/.ssh/config
-|4,39,5,34,1589183902,"~/.ssh/config"
--'  5  34  ~/.ssh/config
-|4,39,5,34,1589183902,"~/.ssh/config"
--'  1  0  ~/.ssh/config
-|4,39,1,0,1589183868,"~/.ssh/config"
--'  1  0  ~/.ssh/config
-|4,39,1,0,1589183868,"~/.ssh/config"
--'  1  0  ~/.ssh/config
-|4,39,1,0,1589183868,"~/.ssh/config"
--'  1  0  ~/.ssh/config
-|4,39,1,0,1589183868,"~/.ssh/config"
--'  1  0  ~/.zshrc
-|4,39,1,0,1589183855,"~/.zshrc"
--'  1  0  ~/.zshrc
-|4,39,1,0,1589183855,"~/.zshrc"
--'  1  0  ~/.zshrc
-|4,39,1,0,1589183855,"~/.zshrc"
--'  1  0  ~/.zshrc
-|4,39,1,0,1589183855,"~/.zshrc"
--'  1  0  ~/.zshrc
-|4,39,1,0,1589183855,"~/.zshrc"
--'  1  0  ~/.zshrc
-|4,39,1,0,1589183855,"~/.zshrc"
--'  1  0  ~/.zshrc
-|4,39,1,0,1589183855,"~/.zshrc"
--'  1  0  ~/.zshrc
-|4,39,1,0,1589183855,"~/.zshrc"
--'  1  0  ~/.zshrc
-|4,39,1,0,1589183855,"~/.zshrc"
--'  1  0  ~/.zshrc
-|4,39,1,0,1589183855,"~/.zshrc"
--'  1  0  ~/.zshrc
-|4,39,1,0,1589183855,"~/.zshrc"
--'  1  0  ~/.zshrc
-|4,39,1,0,1589183855,"~/.zshrc"
+-'  159  53  ~/projects/siemens_automl_project/data_processing.py
+|4,39,159,53,1589983175,"~/projects/siemens_automl_project/data_processing.py"
+-'  38  37  ~/projects/siemens_automl_project/feather_to_stratified_csv.py
+|4,39,38,37,1589983172,"~/projects/siemens_automl_project/feather_to_stratified_csv.py"
+-'  144  1  ~/projects/siemens_automl_project/data_processing.py
+|4,39,144,1,1589973550,"~/projects/siemens_automl_project/data_processing.py"
+-'  150  0  ~/projects/siemens_automl_project/data_processing.py
+|4,39,150,0,1589973532,"~/projects/siemens_automl_project/data_processing.py"
+-'  1  0  ~/projects/siemens_automl_project/data_processing.py
+|4,39,1,0,1589973505,"~/projects/siemens_automl_project/data_processing.py"
+-'  1  0  ~/projects/siemens_automl_project/feather_to_stratified_csv.py
+|4,39,1,0,1589882570,"~/projects/siemens_automl_project/feather_to_stratified_csv.py"
+-'  1  0  ~/projects/siemens_automl_project/feather_to_stratified_csv.py
+|4,39,1,0,1589882570,"~/projects/siemens_automl_project/feather_to_stratified_csv.py"
+-'  1  0  ~/projects/siemens_automl_project/feather_to_stratified_csv.py
+|4,39,1,0,1589879085,"~/projects/siemens_automl_project/feather_to_stratified_csv.py"
+-'  1  0  ~/projects/siemens_automl_project/feather_to_stratified_csv.py
+|4,39,1,0,1589832515,"~/projects/siemens_automl_project/feather_to_stratified_csv.py"
+-'  1  0  ~/projects/siemens_automl_project/feather_to_stratified_csv.py
+|4,39,1,0,1589832515,"~/projects/siemens_automl_project/feather_to_stratified_csv.py"
+-'  51  29  ~/projects/siemens_automl_project/feather_to_stratified_csv.py
+|4,39,51,29,1589820345,"~/projects/siemens_automl_project/feather_to_stratified_csv.py"
+-'  51  29  ~/projects/siemens_automl_project/feather_to_stratified_csv.py
+|4,39,51,29,1589820345,"~/projects/siemens_automl_project/feather_to_stratified_csv.py"
+-'  51  29  ~/projects/siemens_automl_project/feather_to_stratified_csv.py
+|4,39,51,29,1589820345,"~/projects/siemens_automl_project/feather_to_stratified_csv.py"
+-'  60  29  ~/projects/siemens_automl_project/feather_to_stratified_csv.py
+|4,39,60,29,1589820345,"~/projects/siemens_automl_project/feather_to_stratified_csv.py"
+-'  51  29  ~/projects/siemens_automl_project/feather_to_stratified_csv.py
+|4,39,51,29,1589820345,"~/projects/siemens_automl_project/feather_to_stratified_csv.py"
+-'  51  29  ~/projects/siemens_automl_project/feather_to_stratified_csv.py
+|4,39,51,29,1589820345,"~/projects/siemens_automl_project/feather_to_stratified_csv.py"
+-'  51  29  ~/projects/siemens_automl_project/feather_to_stratified_csv.py
+|4,39,51,29,1589820345,"~/projects/siemens_automl_project/feather_to_stratified_csv.py"
+-'  182  4  ~/projects/siemens_automl_project/data_processing.py
+|4,39,182,4,1589819793,"~/projects/siemens_automl_project/data_processing.py"
+-'  182  4  ~/projects/siemens_automl_project/data_processing.py
+|4,39,182,4,1589819793,"~/projects/siemens_automl_project/data_processing.py"
+-'  182  4  ~/projects/siemens_automl_project/data_processing.py
+|4,39,182,4,1589819793,"~/projects/siemens_automl_project/data_processing.py"
+-'  182  4  ~/projects/siemens_automl_project/data_processing.py
+|4,39,182,4,1589819793,"~/projects/siemens_automl_project/data_processing.py"
+-'  182  4  ~/projects/siemens_automl_project/data_processing.py
+|4,39,182,4,1589819793,"~/projects/siemens_automl_project/data_processing.py"
+-'  182  4  ~/projects/siemens_automl_project/data_processing.py
+|4,39,182,4,1589819793,"~/projects/siemens_automl_project/data_processing.py"
+-'  182  4  ~/projects/siemens_automl_project/data_processing.py
+|4,39,182,4,1589819793,"~/projects/siemens_automl_project/data_processing.py"
+-'  1  0  ~/projects/siemens_automl_project/data_processing.py
+|4,39,1,0,1589819512,"~/projects/siemens_automl_project/data_processing.py"
+-'  1  0  ~/projects/siemens_automl_project/data_processing.py
+|4,39,1,0,1589819512,"~/projects/siemens_automl_project/data_processing.py"
+-'  1  0  ~/projects/siemens_automl_project/data_processing.py
+|4,39,1,0,1589819512,"~/projects/siemens_automl_project/data_processing.py"
+-'  1  0  ~/projects/siemens_automl_project/data_processing.py
+|4,39,1,0,1589819512,"~/projects/siemens_automl_project/data_processing.py"
+-'  1  0  ~/projects/siemens_automl_project/data_processing.py
+|4,39,1,0,1589819512,"~/projects/siemens_automl_project/data_processing.py"
+-'  1  0  ~/projects/siemens_automl_project/data_processing.py
+|4,39,1,0,1589819512,"~/projects/siemens_automl_project/data_processing.py"
+-'  1  0  ~/projects/siemens_automl_project/feather_to_stratified_csv.py
+|4,39,1,0,1589819468,"~/projects/siemens_automl_project/feather_to_stratified_csv.py"
+-'  1  0  ~/projects/siemens_automl_project/feather_to_stratified_csv.py
+|4,39,1,0,1589819468,"~/projects/siemens_automl_project/feather_to_stratified_csv.py"
+-'  1  0  ~/projects/siemens_automl_project/feather_to_stratified_csv.py
+|4,39,1,0,1589819468,"~/projects/siemens_automl_project/feather_to_stratified_csv.py"
+-'  1  0  ~/projects/siemens_automl_project/feather_to_stratified_csv.py
+|4,39,1,0,1589819468,"~/projects/siemens_automl_project/feather_to_stratified_csv.py"
+-'  1  0  ~/projects/siemens_automl_project/feather_to_stratified_csv.py
+|4,39,1,0,1589818835,"~/projects/siemens_automl_project/feather_to_stratified_csv.py"
+-'  1  0  ~/projects/siemens_automl_project/feather_to_stratified_csv.py
+|4,39,1,0,1589818835,"~/projects/siemens_automl_project/feather_to_stratified_csv.py"
+-'  1  0  ~/projects/siemens_automl_project/feather_to_stratified_csv.py
+|4,39,1,0,1589811712,"~/projects/siemens_automl_project/feather_to_stratified_csv.py"
+-'  1  0  ~/projects/siemens_automl_project/feather_to_stratified_csv.py
+|4,39,1,0,1589811712,"~/projects/siemens_automl_project/feather_to_stratified_csv.py"
+-'  1  0  ~/projects/siemens_automl_project/feather_to_stratified_csv.py
+|4,39,1,0,1589811712,"~/projects/siemens_automl_project/feather_to_stratified_csv.py"
+-'  1  0  ~/projects/siemens_automl_project/feather_to_stratified_csv.py
+|4,39,1,0,1589811712,"~/projects/siemens_automl_project/feather_to_stratified_csv.py"
+-'  1  0  ~/projects/siemens_automl_project/feather_to_stratified_
+|4,39,1,0,1589805602,"~/projects/siemens_automl_project/feather_to_stratified_"
+-'  1  0  ~/projects/siemens_automl_project/feather_to_stratified_
+|4,39,1,0,1589805602,"~/projects/siemens_automl_project/feather_to_stratified_"
+-'  1  0  ~/projects/siemens_automl_project/feather_to_stratified_
+|4,39,1,0,1589805602,"~/projects/siemens_automl_project/feather_to_stratified_"
+-'  1  0  ~/projects/siemens_automl_project/feather_to_stratified_
+|4,39,1,0,1589805602,"~/projects/siemens_automl_project/feather_to_stratified_"
+-'  1  0  ~/projects/siemens_automl_project/feather_to_stratified_
+|4,39,1,0,1589805602,"~/projects/siemens_automl_project/feather_to_stratified_"
+-'  1  0  ~/projects/siemens_automl_project/feather_to_stratified_
+|4,39,1,0,1589805602,"~/projects/siemens_automl_project/feather_to_stratified_"
+-'  1  0  ~/projects/siemens_automl_project/feather_to_stratified_
+|4,39,1,0,1589805602,"~/projects/siemens_automl_project/feather_to_stratified_"
+-'  1  0  ~/projects/siemens_automl_project/feather_to_stratified_
+|4,39,1,0,1589805602,"~/projects/siemens_automl_project/feather_to_stratified_"
+-'  1  0  ~/projects/siemens_automl_project/feather_to_stratified_
+|4,39,1,0,1589805602,"~/projects/siemens_automl_project/feather_to_stratified_"
+-'  1  0  ~/projects/siemens_automl_project/feather_to_stratified_
+|4,39,1,0,1589805602,"~/projects/siemens_automl_project/feather_to_stratified_"
+-'  1  0  ~/projects/siemens_automl_project/feather_to_stratified_
+|4,39,1,0,1589805602,"~/projects/siemens_automl_project/feather_to_stratified_"
+-'  1  0  ~/projects/siemens_automl_project/feather_to_stratified_
+|4,39,1,0,1589805602,"~/projects/siemens_automl_project/feather_to_stratified_"
+-'  1  0  ~/projects/siemens_automl_project/feather_to_stratified_
+|4,39,1,0,1589805602,"~/projects/siemens_automl_project/feather_to_stratified_"
+-'  1  0  ~/projects/siemens_automl_project/feather_to_stratified_
+|4,39,1,0,1589805602,"~/projects/siemens_automl_project/feather_to_stratified_"
+-'  1  0  ~/projects/siemens_automl_project/feather_to_stratified_
+|4,39,1,0,1589805602,"~/projects/siemens_automl_project/feather_to_stratified_"
+-'  1  0  ~/projects/siemens_automl_project/feather_to_stratified_
+|4,39,1,0,1589805602,"~/projects/siemens_automl_project/feather_to_stratified_"
+-'  1  0  ~/projects/siemens_automl_project/feather_to_stratified_
+|4,39,1,0,1589805602,"~/projects/siemens_automl_project/feather_to_stratified_"
+-'  1  0  ~/projects/siemens_automl_project/feather_to_stratified_
+|4,39,1,0,1589805602,"~/projects/siemens_automl_project/feather_to_stratified_"
+-'  1  0  ~/projects/siemens_automl_project/feather_to_stratified_
+|4,39,1,0,1589805602,"~/projects/siemens_automl_project/feather_to_stratified_"
+-'  1  0  ~/projects/siemens_automl_project/feather_to_stratified_
+|4,39,1,0,1589805602,"~/projects/siemens_automl_project/feather_to_stratified_"
+-'  1  0  ~/projects/siemens_automl_project/feather_to_stratified_
+|4,39,1,0,1589805602,"~/projects/siemens_automl_project/feather_to_stratified_"
+-'  1  0  ~/projects/siemens_automl_project/feather_to_stratified_
+|4,39,1,0,1589805602,"~/projects/siemens_automl_project/feather_to_stratified_"
+-'  1  0  ~/projects/siemens_automl_project/feather_to_stratified_
+|4,39,1,0,1589805602,"~/projects/siemens_automl_project/feather_to_stratified_"
+-'  1  0  ~/projects/siemens_automl_project/feather_to_stratified_
+|4,39,1,0,1589805602,"~/projects/siemens_automl_project/feather_to_stratified_"
+-'  1  0  ~/projects/siemens_automl_project/feather_to_stratified_
+|4,39,1,0,1589805602,"~/projects/siemens_automl_project/feather_to_stratified_"
+-'  1  0  ~/projects/siemens_automl_project/feather_to_stratified_
+|4,39,1,0,1589805602,"~/projects/siemens_automl_project/feather_to_stratified_"
+-'  1  0  ~/projects/siemens_automl_project/feather_to_stratified_
+|4,39,1,0,1589805602,"~/projects/siemens_automl_project/feather_to_stratified_"
+-'  1  0  ~/projects/siemens_automl_project/feather_to_stratified_
+|4,39,1,0,1589805602,"~/projects/siemens_automl_project/feather_to_stratified_"
+-'  1  0  ~/projects/siemens_automl_project/feather_to_stratified_
+|4,39,1,0,1589805602,"~/projects/siemens_automl_project/feather_to_stratified_"
+-'  1  0  ~/projects/siemens_automl_project/feather_to_stratified_
+|4,39,1,0,1589805602,"~/projects/siemens_automl_project/feather_to_stratified_"
+-'  1  0  ~/projects/siemens_automl_project/feather_to_stratified_
+|4,39,1,0,1589805602,"~/projects/siemens_automl_project/feather_to_stratified_"
+-'  1  0  ~/projects/siemens_automl_project/feather_to_stratified_
+|4,39,1,0,1589805602,"~/projects/siemens_automl_project/feather_to_stratified_"
+-'  1  0  ~/projects/siemens_automl_project/feather_to_stratified_
+|4,39,1,0,1589805602,"~/projects/siemens_automl_project/feather_to_stratified_"
+-'  1  0  ~/projects/siemens_automl_project/feather_to_stratified_
+|4,39,1,0,1589805602,"~/projects/siemens_automl_project/feather_to_stratified_"
+-'  1  0  ~/projects/siemens_automl_project/feather_to_stratified_
+|4,39,1,0,1589805602,"~/projects/siemens_automl_project/feather_to_stratified_"
+-'  1  0  ~/projects/siemens_automl_project/feather_to_stratified_
+|4,39,1,0,1589805602,"~/projects/siemens_automl_project/feather_to_stratified_"
+-'  1  0  ~/projects/siemens_automl_project/feather_to_stratified_
+|4,39,1,0,1589805602,"~/projects/siemens_automl_project/feather_to_stratified_"
+-'  1  0  ~/projects/siemens_automl_project/feather_to_stratified_
+|4,39,1,0,1589805602,"~/projects/siemens_automl_project/feather_to_stratified_"
+-'  1  0  ~/projects/siemens_automl_project/feather_to_stratified_
+|4,39,1,0,1589805602,"~/projects/siemens_automl_project/feather_to_stratified_"
+-'  1  0  ~/projects/siemens_automl_project/feather_to_stratified_
+|4,39,1,0,1589805602,"~/projects/siemens_automl_project/feather_to_stratified_"
+-'  1  0  ~/projects/siemens_automl_project/feather_to_stratified_
+|4,39,1,0,1589805602,"~/projects/siemens_automl_project/feather_to_stratified_"
+-'  1  0  ~/projects/siemens_automl_project/feather_to_stratified_
+|4,39,1,0,1589805602,"~/projects/siemens_automl_project/feather_to_stratified_"
+-'  1  0  ~/projects/siemens_automl_project/feather_to_stratified_
+|4,39,1,0,1589805602,"~/projects/siemens_automl_project/feather_to_stratified_"
+-'  1  0  ~/projects/siemens_automl_project/feather_to_stratified_
+|4,39,1,0,1589805602,"~/projects/siemens_automl_project/feather_to_stratified_"
+-'  1  0  ~/projects/siemens_automl_project/feather_to_stratified_
+|4,39,1,0,1589805602,"~/projects/siemens_automl_project/feather_to_stratified_"
+-'  1  0  ~/projects/siemens_automl_project/feather_to_stratified_
+|4,39,1,0,1589805602,"~/projects/siemens_automl_project/feather_to_stratified_"
+-'  1  0  ~/projects/siemens_automl_project/feather_to_stratified_
+|4,39,1,0,1589805602,"~/projects/siemens_automl_project/feather_to_stratified_"
+-'  1  0  ~/projects/siemens_automl_project/feather_to_stratified_
+|4,39,1,0,1589805602,"~/projects/siemens_automl_project/feather_to_stratified_"
+-'  1  0  ~/projects/siemens_automl_project/feather_to_stratified_
+|4,39,1,0,1589805602,"~/projects/siemens_automl_project/feather_to_stratified_"
+-'  1  0  ~/projects/siemens_automl_project/feather_to_stratified_
+|4,39,1,0,1589805602,"~/projects/siemens_automl_project/feather_to_stratified_"
+-'  1  0  ~/projects/siemens_automl_project/feather_to_stratified_
+|4,39,1,0,1589805602,"~/projects/siemens_automl_project/feather_to_stratified_"
+-'  1  0  ~/projects/siemens_automl_project/feather_to_stratified_
+|4,39,1,0,1589805602,"~/projects/siemens_automl_project/feather_to_stratified_"
+-'  1  0  ~/projects/siemens_automl_project/feather_to_stratified_
+|4,39,1,0,1589805602,"~/projects/siemens_automl_project/feather_to_stratified_"
+-'  1  0  ~/projects/siemens_automl_project/feather_to_stratified_
+|4,39,1,0,1589805602,"~/projects/siemens_automl_project/feather_to_stratified_"
+-'  1  0  ~/projects/siemens_automl_project/feather_to_stratified_
+|4,39,1,0,1589805602,"~/projects/siemens_automl_project/feather_to_stratified_"
+-'  1  0  ~/projects/siemens_automl_project/feather_to_stratified_
+|4,39,1,0,1589805602,"~/projects/siemens_automl_project/feather_to_stratified_"
+-'  1  0  ~/projects/siemens_automl_project/feather_to_stratified_
+|4,39,1,0,1589805602,"~/projects/siemens_automl_project/feather_to_stratified_"
+-'  1  0  ~/projects/siemens_automl_project/feather_to_stratified_
+|4,39,1,0,1589805602,"~/projects/siemens_automl_project/feather_to_stratified_"
+-'  1  0  ~/projects/siemens_automl_project/feather_to_stratified_
+|4,39,1,0,1589805602,"~/projects/siemens_automl_project/feather_to_stratified_"
+-'  1  0  ~/projects/siemens_automl_project/feather_to_stratified_
+|4,39,1,0,1589805602,"~/projects/siemens_automl_project/feather_to_stratified_"
 
 # History of marks within files (newest to oldest):
 
-> ~/.ssh/config
-	*	1589566674	0
-	"	15	29
-	^	15	30
-	.	15	29
-	+	1	0
-	+	1	37
-	+	2	15
-	+	3	13
-	+	4	9
-	+	3	13
-	+	5	16
-	+	2	0
-	+	7	0
-	+	6	0
-	+	7	14
-	+	9	11
-	+	10	38
-	+	12	11
-	+	17	0
-	+	15	29
-
-> ~/.ssh/known_hosts
-	*	1589566114	0
-	"	1	0
-	.	4	0
-	+	4	0
-
-> ~/.zshrc
-	*	1589564238	0
-	"	105	0
-	^	99	33
-	.	113	0
-	+	104	4
-	+	103	44
-	+	105	16
-	+	107	49
-	+	107	46
-	+	99	33
-	+	106	0
-	+	113	0
-
 > ~/projects/siemens_automl_project/data_processing.py
-	*	1588705178	0
-	"	194	77
+	*	1589983174	0
+	"	159	53
+	^	208	5
 	.	194	76
 	+	76	1
 	+	77	1
@@ -585,40 +521,130 @@ $out_name
 	+	194	76
 
 > ~/projects/siemens_automl_project/feather_to_stratified_csv.py
-	*	1588602471	0
-	"	1	0
-	^	1	23
-	.	25	81
-	+	24	27
-	+	25	25
-	+	24	26
+	*	1589983171	0
+	"	38	37
+	^	38	38
+	.	38	37
+	+	41	27
+	+	42	25
+	+	41	26
 	+	6	14
-	+	40	52
+	+	61	52
 	+	10	4
 	+	9	43
-	+	15	17
-	+	23	0
-	+	24	39
-	+	25	37
+	+	16	17
+	+	25	0
+	+	41	39
+	+	42	37
 	+	11	23
-	+	16	7
-	+	19	23
-	+	26	9
-	+	19	0
-	+	23	0
-	+	19	0
-	+	18	76
-	+	25	33
-	+	24	36
-	+	25	35
-	+	24	38
-	+	25	37
-	+	26	11
-	+	20	55
-	+	22	11
+	+	17	7
+	+	21	23
+	+	43	9
+	+	21	0
+	+	25	0
+	+	21	0
+	+	19	76
+	+	42	33
+	+	41	36
+	+	42	35
+	+	41	38
+	+	42	37
+	+	43	11
+	+	22	55
+	+	24	11
 	+	12	52
-	+	24	83
-	+	25	81
+	+	41	83
+	+	42	81
+	+	14	5
+	+	55	4
+	+	56	24
+	+	57	85
+	+	14	15
+	+	9	56
+	+	61	59
+	+	56	22
+	+	61	67
+	+	9	54
+	+	14	13
+	+	14	8
+	+	14	0
+	+	14	60
+	+	14	43
+	+	14	0
+	+	20	8
+	+	21	8
+	+	14	0
+	+	26	8
+	+	27	0
+	+	31	43
+	+	32	62
+	+	21	0
+	+	33	68
+	+	34	20
+	+	33	27
+	+	34	25
+	+	41	30
+	+	37	61
+	+	29	43
+	+	38	20
+	+	41	0
+	+	36	27
+	+	35	18
+	+	39	0
+	+	37	39
+	+	38	37
+
+> ~/projects/siemens_automl_project/feather_to_stratified_
+	*	1589805600	0
+	"	1	0
+	v	1	0
+
+> ~/.ssh/config
+	*	1589566674	0
+	"	15	29
+	^	15	30
+	.	15	29
+	+	1	0
+	+	1	37
+	+	2	15
+	+	3	13
+	+	4	9
+	+	3	13
+	+	5	16
+	+	2	0
+	+	7	0
+	+	6	0
+	+	7	14
+	+	9	11
+	+	10	38
+	+	12	11
+	+	17	0
+	+	15	29
+
+> ~/.ssh/github.pub
+	*	1589566231	0
+	"	1	0
+	^	1	401
+
+> ~/.ssh/known_hosts
+	*	1589566114	0
+	"	1	0
+	.	4	0
+	+	4	0
+
+> ~/.zshrc
+	*	1589564238	0
+	"	105	0
+	^	99	33
+	.	113	0
+	+	104	4
+	+	103	44
+	+	105	16
+	+	107	49
+	+	107	46
+	+	99	33
+	+	106	0
+	+	113	0
 
 > ~/projects/siemens_automl_project/feather_to_stratified_whole_csv.py
 	*	1588595836	0
