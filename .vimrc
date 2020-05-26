@@ -25,12 +25,44 @@ Plugin 'VundleVim/Vundle.vim'
 " Plug Ins
 Plugin 'itchyny/lightline.vim'
 Plugin 'tomasiser/vim-code-dark'
+Plugin 'preservim/nerdtree'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
 " filetype plugin on
+
+" Better copy & paste
+" When you want to paste large blocks of code into vim, press F2 before you
+" paste. At the bottom you should see ``-- INSERT (paste) --``.
+
+set pastetoggle=<F2>
+set clipboard=unnamed
+
+" Automatic reloading of .vimrc
+autocmd! bufwritepost .vimrc source %
+
+" Rebind <Leader> key
+let mapleader = ","
+
+" easier moving between tabs
+map <Leader>n <esc>:tabprevious<CR>
+map <Leader>m <esc>:tabnext<CR>
+
+" bind Ctrl+<movement> keys to move around the windows, instead of using Ctrl+w + <movement>
+" Every unnecessary keystroke that can be saved is good for your health :)
+map <c-j> <c-w>j
+map <c-k> <c-w>k
+map <c-l> <c-w>l
+map <c-h> <c-w>h
+
+" map sort function to a key
+vnoremap <Leader>s :sort<CR>
+
+" easier moving of code blocks
+vnoremap < <gv  " better indentation
+vnoremap > >gv  " better indentation
 
 " Turn on syntax highlighting.
 syntax on
@@ -40,6 +72,8 @@ set shortmess+=I
 
 " Show line numbers.
 set number
+" set colorcolumn=80
+" highlight ColorColumn ctermbg=0 guibg=green
 
 " This enables relative line numbering mode. With both number and
 " relativenumber enabled, the current line shows the true line number, while
@@ -105,7 +139,7 @@ inoremap <Down>  <ESC>:echoe "Use j"<CR>
 " set background=dark
 " colorscheme palenight
 colorscheme codedark
-
+set colorcolumn=80
 
 " Flake8 settings
 " let g:PyFlakeOnWrite = 1

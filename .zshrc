@@ -110,3 +110,4 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 
 
 source /Users/krl/Library/Preferences/org.dystroy.broot/launcher/bash/br
+# source /usr/local/opt/powerlevel9k/powerlevel9k.zsh-theme
