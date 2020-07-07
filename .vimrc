@@ -26,6 +26,7 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'itchyny/lightline.vim'
 Plugin 'tomasiser/vim-code-dark'
 Plugin 'preservim/nerdtree'
+Plugin 'Valloric/YouCompleteMe'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -63,6 +64,12 @@ vnoremap <Leader>s :sort<CR>
 " easier moving of code blocks
 vnoremap < <gv  " better indentation
 vnoremap > >gv  " better indentation
+
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set shiftround
+set expandtab
 
 " Turn on syntax highlighting.
 syntax on
@@ -134,6 +141,8 @@ inoremap <Right> <ESC>:echoe "Use l"<CR>
 inoremap <Up>    <ESC>:echoe "Use k"<CR>
 inoremap <Down>  <ESC>:echoe "Use j"<CR>
 
+" python debuggin
+nnoremap <leader>p oimport pdb; pdb.set_trace()<Esc>
 
 " color scheme
 " set background=dark
