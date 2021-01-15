@@ -106,8 +106,12 @@ alias ll="lsd -l"
 alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles.git/ --work-tree=$HOME"
 # alias ssh-automl="ssh -i ~/.ssh/scs-cluster root@172.22.131.140" 
 
+bindkey -v
+
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 
 source /Users/krl/Library/Preferences/org.dystroy.broot/launcher/bash/br
 # source /usr/local/opt/powerlevel9k/powerlevel9k.zsh-theme
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

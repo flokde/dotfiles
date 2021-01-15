@@ -27,12 +27,18 @@ Plugin 'itchyny/lightline.vim'
 Plugin 'tomasiser/vim-code-dark'
 Plugin 'preservim/nerdtree'
 Plugin 'Valloric/YouCompleteMe'
+Plugin 'nvie/vim-flake8'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
 " filetype plugin on
+autocmd BufNewFile,BufRead *.py set ft=python
+
+" Nerdtree settings
+autocmd VimEnter * NERDTree | wincmd p
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " Better copy & paste
 " When you want to paste large blocks of code into vim, press F2 before you
@@ -61,6 +67,11 @@ map <c-h> <c-w>h
 " map sort function to a key
 vnoremap <Leader>s :sort<CR>
 
+" quote a word
+nnoremap <Leader>q" ciw""<Esc>P
+nnoremap <Leader>q' ciw''<Esc>P
+nnoremap <Leader>qd daW"=substitute(@@,"'\\\|\"","","g")<CR>P
+
 " easier moving of code blocks
 vnoremap < <gv  " better indentation
 vnoremap > >gv  " better indentation
@@ -70,6 +81,11 @@ set softtabstop=4
 set shiftwidth=4
 set shiftround
 set expandtab
+
+" Set folding to fold indented blocks
+set foldmethod=indent
+" Have everything unfolded on start
+set foldlevel=99
 
 " Turn on syntax highlighting.
 syntax on
