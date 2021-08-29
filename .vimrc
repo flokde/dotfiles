@@ -16,8 +16,6 @@ filetype off
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
@@ -27,11 +25,15 @@ Plugin 'itchyny/lightline.vim'
 Plugin 'tomasiser/vim-code-dark'
 Plugin 'preservim/nerdtree'
 Plugin 'Valloric/YouCompleteMe'
-Plugin 'nvie/vim-flake8'
+" Plugin 'nvie/vim-flake8'
+Plugin 'morhetz/gruvbox'
+Plugin 'christoomey/vim-tmux-navigator'
+Plugin 'dense-analysis/ale'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
+
 " To ignore plugin indent changes, instead use:
 " filetype plugin on
 autocmd BufNewFile,BufRead *.py set ft=python
@@ -57,12 +59,13 @@ let mapleader = ","
 map <Leader>n <esc>:tabprevious<CR>
 map <Leader>m <esc>:tabnext<CR>
 
+" currently disabled as tmux-vim-navigator takes care of this
 " bind Ctrl+<movement> keys to move around the windows, instead of using Ctrl+w + <movement>
 " Every unnecessary keystroke that can be saved is good for your health :)
-map <c-j> <c-w>j
-map <c-k> <c-w>k
-map <c-l> <c-w>l
-map <c-h> <c-w>h
+" map <c-j> <c-w>j
+" map <c-k> <c-w>k
+" map <c-l> <c-w>l
+" map <c-h> <c-w>h
 
 " map sort function to a key
 vnoremap <Leader>s :sort<CR>
@@ -86,6 +89,10 @@ set expandtab
 set foldmethod=indent
 " Have everything unfolded on start
 set foldlevel=99
+set foldcolumn=2
+" Have fold over entire file and set leader shortcut
+" :let &l:foldlevel = indent('.') / &shiftwidth
+:nnoremap <silent> <leader>z :let&l:fdl=indent('.')/&sw<cr>
 
 " Turn on syntax highlighting.
 syntax on
@@ -160,11 +167,59 @@ inoremap <Down>  <ESC>:echoe "Use j"<CR>
 " python debuggin
 nnoremap <leader>p oimport pdb; pdb.set_trace()<Esc>
 
-" color scheme
+""" color scheme
 " set background=dark
+
+" solarized light
+syntax enable
+set background=light
+
+"gruvbox
+" autocmd vimenter * ++nested colorscheme gruvbox
+
+
+colorscheme solarized
 " colorscheme palenight
-colorscheme codedark
+" colorscheme codedark
+
 set colorcolumn=80
 
 " Flake8 settings
 " let g:PyFlakeOnWrite = 1
+
+" ale settings for linting and fixing
+let g:ale_linters = {'python': ['flake8']}
+" let g:ale_lsp_root = {}
+let g:ale_fixers = {'python': ['black', 'isort'],
+\   '*': ['remove_trailing_lines', 'trim_whitespaces'],
+\}
+
+" Prettier markers for errors and warnings
+let g:ale_sign_error = '●'
+let g:ale_sign_warning = '.'
+
+" Show number of errors according to ale
+" function! LinterStatus() abort
+"     let l:counts = ale#statusline#Count(bufnr(''))    let l:all_errors = l:counts.error + l:counts.style_error
+"     let l:all_non_errors = l:counts.total - l:all_errors    return l:counts.total == 0 ? 'OK' : printf(
+"         \   '%d⨉ %d⚠ ',
+"         \   all_non_errors,
+"         \   all_errors
+"         \)
+" endfunction
+
+" set statusline+=%=
+" set statusline+=\ %{LinterStatus()}
+
+" Jump to next ale error
+nmap <silent> <leader>e <Plug>(ale_next_wrap)
+
+" copied from the internet to get tmux-vim navigation to work
+" https://github.com/christoomey/vim-tmux-navigator/issues/234
+nmap <C-j> :TmuxNavigateDown<cr>
+nmap <C-k> :TmuxNavigateUp<cr>
+nmap <C-l> :TmuxNavigateRight<cr>
+imap <C-h> :TmuxNavigateLeft<cr>
+imap <C-j> :TmuxNavigateDown<cr>
+imap <C-k> :TmuxNavigateUp<cr>
+imap <C-l> :TmuxNavigateRight<cr>
