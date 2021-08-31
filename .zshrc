@@ -100,10 +100,11 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias ..="cd .."
 alias gs="git status"
-alias dude="~/projects/siemens_automl_project"
 alias l="lsd -la"
 alias ll="lsd -l"
 alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles.git/ --work-tree=$HOME"
+alias vir="source venv/bin/activate"
+alias v="vim"
 # alias ssh-automl="ssh -i ~/.ssh/scs-cluster root@172.22.131.140" 
 
 bindkey -v
