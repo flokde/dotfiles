@@ -138,6 +138,20 @@ set smartcase
 " Enable searching as you type, rather than waiting till you press enter.
 set incsearch
 
+" Highlight on search
+set hlsearch
+
+" Center when jumping around search results
+nnoremap n nzz
+nnoremap N Nzz
+nnoremap * *zz
+nnoremap # #zz
+nnoremap g* g*zz
+nnoremap g# g#zz
+
+" Double leader to clear search highlighting
+nnoremap <Leader>, :noh<Enter>
+
 " Unbind some useless/annoying default key bindings.
 nmap Q <Nop> " 'Q' in normal mode enters Ex mode. You almost never want this.
 
@@ -223,3 +237,6 @@ imap <C-h> :TmuxNavigateLeft<cr>
 imap <C-j> :TmuxNavigateDown<cr>
 imap <C-k> :TmuxNavigateUp<cr>
 imap <C-l> :TmuxNavigateRight<cr>
+
+" ctags should check not only current directory, but higher level ones, too
+set tags=tags;/
