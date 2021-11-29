@@ -116,3 +116,6 @@ source /Users/krl/Library/Preferences/org.dystroy.broot/launcher/bash/br
 # source /usr/local/opt/powerlevel9k/powerlevel9k.zsh-theme
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"

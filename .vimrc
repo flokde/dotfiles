@@ -29,6 +29,12 @@ Plugin 'Valloric/YouCompleteMe'
 Plugin 'morhetz/gruvbox'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'dense-analysis/ale'
+Plugin 'smbl64/vim-black-macchiato'
+Plugin 'wincent/command-t'
+" Snippet Stuff
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
+Plugin 'jpalardy/vim-slime'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -56,8 +62,10 @@ autocmd! bufwritepost .vimrc source %
 let mapleader = ","
 
 " easier moving between tabs
-map <Leader>n <esc>:tabprevious<CR>
-map <Leader>m <esc>:tabnext<CR>
+" map <Leader>n <esc>:tabprevious<CR>
+" map <Leader>m <esc>:tabnext<CR>
+map <c-n> <esc>:tabprevious<CR>
+map <c-m> <esc>:tabnext<CR>
 
 " currently disabled as tmux-vim-navigator takes care of this
 " bind Ctrl+<movement> keys to move around the windows, instead of using Ctrl+w + <movement>
@@ -240,3 +248,25 @@ imap <C-l> :TmuxNavigateRight<cr>
 
 " ctags should check not only current directory, but higher level ones, too
 set tags=tags;/
+
+" move left and right
+" noremap ö l
+" noremap l h
+
+" black macchiato vim integration
+autocmd FileType python xmap <buffer> <Leader>f <plug>(BlackMacchiatoSelection)
+autocmd FileType python nmap <buffer> <Leader>f <plug>(BlackMacchiatoCurrentLine)
+
+" fix legacy snipmate parser is deprecated
+" let g:snipMate = { 'snippet_version' : 1 }
+" UltiSnips config
+let g:UltiSnipsExpandTrigger="<Leader>a"
+" " list all snippets for current filetype
+let g:UltiSnipsListSnippets="<c-l>"
+let g:UltiSnipsJumpForwardTrigger="<c-i>"
+let g:UltiSnipsJumpBackwardTrigger="<c-u>"
+
+
+" vim-slime configuration
+let g:slime_target = "tmux"
+let g:slime_default_config = {"socket_name": "default", "target_pane": "{last}"}
