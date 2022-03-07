@@ -102,6 +102,7 @@ alias ..="cd .."
 alias gs="git status"
 alias l="lsd -la"
 alias ll="lsd -l"
+
 alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles.git/ --work-tree=$HOME"
 alias vir="source venv/bin/activate"
 alias v="vim"
@@ -119,3 +120,7 @@ source /Users/krl/Library/Preferences/org.dystroy.broot/launcher/bash/br
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
+
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+

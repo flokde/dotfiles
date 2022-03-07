@@ -25,6 +25,8 @@ Plugin 'itchyny/lightline.vim'
 Plugin 'tomasiser/vim-code-dark'
 Plugin 'preservim/nerdtree'
 Plugin 'Valloric/YouCompleteMe'
+Plugin 'junegunn/fzf.vim'
+Plugin 'junegunn/fzf'
 " Plugin 'nvie/vim-flake8'
 Plugin 'morhetz/gruvbox'
 Plugin 'christoomey/vim-tmux-navigator'
@@ -270,3 +272,66 @@ let g:UltiSnipsJumpBackwardTrigger="<c-u>"
 " vim-slime configuration
 let g:slime_target = "tmux"
 let g:slime_default_config = {"socket_name": "default", "target_pane": "{last}"}
+
+" Commenting blocks of code.
+" augroup commenting_blocks_of_code
+"   autocmd!
+"   autocmd FileType c,cpp,java,scala let b:comment_leader = '// '
+"   autocmd FileType sh,ruby,python   let b:comment_leader = '# '
+"   autocmd FileType conf,fstab       let b:comment_leader = '# '
+"   autocmd FileType tex              let b:comment_leader = '% '
+"   autocmd FileType mail             let b:comment_leader = '> '
+"   autocmd FileType vim              let b:comment_leader = '" '
+" augroup END
+" noremap <silent> ,cc :<C-B>silent <C-E>s/^/<C-R>=escape(b:comment_leader,'\/')<CR>/<CR>:nohlsearch<CR>
+" noremap <silent> ,cu :<C-B>silent <C-E>s/^\V<C-R>=escape(b:comment_leader,'\/')<CR>//e<CR>:nohlsearch<CR>
+
+" source: https://stackoverflow.com/a/24046914/2571881
+let s:comment_map = {
+    \   "c": '\/\/',
+    \   "cpp": '\/\/',
+    \   "go": '\/\/',
+    \   "java": '\/\/',
+    \   "javascript": '\/\/',
+    \   "lua": '--',
+    \   "scala": '\/\/',
+    \   "php": '\/\/',
+    \   "python": '#',
+    \   "ruby": '#',
+    \   "rust": '\/\/',
+    \   "sh": '#',
+    \   "desktop": '#',
+    \   "fstab": '#',
+    \   "conf": '#',
+    \   "profile": '#',
+    \   "bashrc": '#',
+    \   "bash_profile": '#',
+    \   "mail": '>',
+    \   "eml": '>',
+    \   "bat": 'REM',
+    \   "ahk": ';',
+    \   "vim": '"',
+    \   "tex": '%',
+    \ }
+
+function! ToggleComment()
+    if has_key(s:comment_map, &filetype)
+        let comment_leader = s:comment_map[&filetype]
+        if getline('.') =~ '^\s*$'
+            " Skip empty line
+            return
+        endif
+        if getline('.') =~ '^\s*' . comment_leader
+            " Uncomment the line
+            execute 'silent s/\v\s*\zs' . comment_leader . '\s*\ze//'
+        else
+            " Comment the line
+            execute 'silent s/\v^(\s*)/\1' . comment_leader . ' /'
+        endif
+    else
+        echo "No comment leader found for filetype"
+    endif
+endfunction
+
+nnoremap <Leader>c :call ToggleComment()<CR>
+vnoremap <Leader>c :call ToggleComment()<CR>
