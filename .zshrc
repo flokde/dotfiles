@@ -101,12 +101,16 @@ source $ZSH/oh-my-zsh.sh
 alias ..="cd .."
 alias gs="git status"
 alias l="lsd -la"
-alias ll="lsd -l"
+alias ll="ls -lah"
 
 alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles.git/ --work-tree=$HOME"
 alias vir="source venv/bin/activate"
 alias v="vim"
 # alias ssh-automl="ssh -i ~/.ssh/scs-cluster root@172.22.131.140" 
+alias tm="tmux new-session \; split-window -h \; resize-pane -R 30 \;"
+alias python="python3"
+
+ym1 () {tmux new-session \; split-window -h \; resize-pane -R 30 \; select-pane -L; vim $1;}
 
 bindkey -v
 
@@ -124,3 +128,9 @@ export PATH="$PATH:$HOME/.rvm/bin"
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/krl/projects/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/krl/projects/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/krl/projects/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/krl/projects/google-cloud-sdk/completion.zsh.inc'; fi

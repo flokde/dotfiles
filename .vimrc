@@ -22,14 +22,20 @@ Plugin 'VundleVim/Vundle.vim'
 
 " Plug Ins
 Plugin 'itchyny/lightline.vim'
-Plugin 'tomasiser/vim-code-dark'
+
+" Unused Color schemes
+" Plugin 'tomasiser/vim-code-dark'
+" Plugin 'morhetz/gruvbox'
+
 Plugin 'preservim/nerdtree'
 Plugin 'Valloric/YouCompleteMe'
+Plugin 'christoomey/vim-tmux-navigator'
+
+" Fuzzy Finder
 Plugin 'junegunn/fzf.vim'
 Plugin 'junegunn/fzf'
+
 " Plugin 'nvie/vim-flake8'
-Plugin 'morhetz/gruvbox'
-Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'dense-analysis/ale'
 Plugin 'smbl64/vim-black-macchiato'
 Plugin 'wincent/command-t'
@@ -37,6 +43,15 @@ Plugin 'wincent/command-t'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 Plugin 'jpalardy/vim-slime'
+
+" Makes stuff more readable
+Plugin 'mechatroner/rainbow_csv'
+Plugin 'luochen1990/rainbow'
+
+" Markdown stuff
+Plugin 'godlygeek/tabular'
+Plugin 'preservim/vim-markdown'
+Plugin 'iamcco/markdown-preview.nvim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -103,6 +118,7 @@ set foldcolumn=2
 " Have fold over entire file and set leader shortcut
 " :let &l:foldlevel = indent('.') / &shiftwidth
 :nnoremap <silent> <leader>z :let&l:fdl=indent('.')/&sw<cr>
+" zR to open all folds, za to toggle current fold
 
 " Turn on syntax highlighting.
 syntax on
@@ -335,3 +351,23 @@ endfunction
 
 nnoremap <Leader>c :call ToggleComment()<CR>
 vnoremap <Leader>c :call ToggleComment()<CR>
+" end comment toggle stuff
+
+
+" YouCompleteMe settings
+set completeopt-=preview
+nnoremap <leader>gd :YcmCompleter GoToDefinition<CR>
+nnoremap <leader>gr :YcmCompleter GoToReferences<CR>
+nnoremap <leader>gt :YcmCompleter GetType<CR>
+nnoremap <leader>gp :YcmCompleter GetParent<CR> " Doesn't work for python :(
+nnoremap <leader>go :YcmCompleter GetDoc<CR>
+
+" Rainbow Brackets on
+let g:rainbow_active = 1
+
+" let lightcolors =  ['lightblue', 'lightyellow', 'red', 'darkgreen', 'darkyellow', 'lightred', 'yellow', 'cyan', 'magenta', 'white']
+let darkcolors = ['DarkBlue', 'Magenta', 'Black', 'Red', 'DarkGray', 'DarkGreen', 'DarkYellow']
+let g:rainbow_conf = {'ctermfgs': darkcolors}
+
+" Not losing registry when pasting, so we could paste an additional time
+xnoremap p pgvy
