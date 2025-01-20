@@ -39,6 +39,7 @@ Plugin 'junegunn/fzf'
 Plugin 'dense-analysis/ale'
 Plugin 'smbl64/vim-black-macchiato'
 Plugin 'wincent/command-t'
+
 " Snippet Stuff
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
@@ -47,11 +48,15 @@ Plugin 'jpalardy/vim-slime'
 " Makes stuff more readable
 Plugin 'mechatroner/rainbow_csv'
 Plugin 'luochen1990/rainbow'
+Bundle 'wellle/context.vim'
 
 " Markdown stuff
 Plugin 'godlygeek/tabular'
 Plugin 'preservim/vim-markdown'
 Plugin 'iamcco/markdown-preview.nvim'
+
+" Fugitive for better Git
+Plugin 'tpope/vim-fugitive'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -98,6 +103,9 @@ vnoremap <Leader>s :sort<CR>
 " quote a word
 nnoremap <Leader>q" ciw""<Esc>P
 nnoremap <Leader>q' ciw''<Esc>P
+nnoremap <Leader>q( ciw()<Esc>P
+nnoremap <Leader>q[ ciw[]<Esc>P
+nnoremap <Leader>q{ ciw[]<Esc>P
 nnoremap <Leader>qd daW"=substitute(@@,"'\\\|\"","","g")<CR>P
 
 " easier moving of code blocks
@@ -233,6 +241,9 @@ let g:ale_linters = {'python': ['flake8']}
 let g:ale_fixers = {'python': ['black', 'isort'],
 \   '*': ['remove_trailing_lines', 'trim_whitespaces'],
 \}
+
+" Set this variable to 1 to fix files when you save them.
+" let g:ale_fix_on_save = 1
 
 " Prettier markers for errors and warnings
 let g:ale_sign_error = '●'
@@ -371,3 +382,6 @@ let g:rainbow_conf = {'ctermfgs': darkcolors}
 
 " Not losing registry when pasting, so we could paste an additional time
 xnoremap p pgvy
+
+" Get Silver Surfer on shortcut
+nnoremap <leader>x :Ag <CR>

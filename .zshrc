@@ -3,7 +3,7 @@
 PATH=/Library/Frameworks/Python.framework/Versions/3.7/bin:$PATH:/Users/krl/.zfunc
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/krl/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -86,6 +86,9 @@ source $ZSH/oh-my-zsh.sh
 # else
 #   export EDITOR='mvim'
 # fi
+#
+# editor for tmux navigation
+export EDITOR=vim
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -100,6 +103,7 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias ..="cd .."
 alias gs="git status"
+alias gg="git log --graph --oneline --all"
 alias l="lsd -la"
 alias ll="ls -lah"
 
@@ -109,6 +113,11 @@ alias v="vim"
 # alias ssh-automl="ssh -i ~/.ssh/scs-cluster root@172.22.131.140" 
 alias tm="tmux new-session \; split-window -h \; resize-pane -R 30 \;"
 alias python="python3"
+
+# Project aliases
+alias destatis="cd $HOME/projects/mlops-architecture-description"
+
+alias kcldemo="kubectl --kubeconfig ~/.kube/dlcluster2.yaml -n imb8l"
 
 ym1 () {tmux new-session \; split-window -h \; resize-pane -R 30 \; select-pane -L; vim $1;}
 
@@ -128,9 +137,22 @@ export PATH="$PATH:$HOME/.rvm/bin"
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
+# Prevent dump of cache, history etc. to $HOME
+export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$HOST
 
+# Google Cloud Stuff from MLOps Summer School
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/krl/projects/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/krl/projects/google-cloud-sdk/path.zsh.inc'; fi
+# if [ -f '/Users/krl/projects/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/krl/projects/google-cloud-sdk/path.zsh.inc'; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '/Users/krl/projects/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/krl/projects/google-cloud-sdk/completion.zsh.inc'; fi
+# if [ -f '/Users/krl/projects/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/krl/projects/google-cloud-sdk/completion.zsh.inc'; fi
+
+# copy to clipboard in vim mode
+function vi-yank-xclip {
+    zle vi-yank
+       echo "$CUTBUFFER" | pbcopy
+   }
+
+zle -N vi-yank-xclip
+bindkey -M vicmd 'y' vi-yank-xclip
+
